@@ -4,14 +4,13 @@ day=`date +%d`
 month=`date +%m`
 year=`date +%Y`
 week=$((($(date +%-d)-1)/7+1))
-#echo -e "$day\n$month\n$year\n$week"
 back_dir="/backups/log_backup/year-$year/month-$month/week-0$week"
 report_dir="/backups/log_backup/reports"
 if [ ! -d $report_dir ]; then
 	mkdir -p $report_dir
 fi
 
-#echo $back_dir
+
 if [ ! -d $back_dir ]; then
 	mkdir -p $back_dir
 fi
@@ -39,42 +38,55 @@ fi
 
 }
 #'
+
+clean_log()
+{
+
+if [ "$week" -eq 4 ];then
+	echo "week $week so file deleted from  /var/log/ " >> $report_dir/$var.txt
+	rm -rf /var/log/$var.*.gz 
+	else 
+		echo "week $week so file exists in /var/log/ " >> $report_dir/$var.txt
+fi
+
 }
 
 var="auth.log"
 var_dir="$back_dir/$var""_backup"
-clean_log 
-#echo $var_dir
-#: '
-backup $var_dir
+backup 
+clean_log
 
-#if [ 1 -eq 1 ];then
 var="alternatives.log"
 var_dir="$back_dir/$var""_backup"
+backup $var_dir
 clean_log
-#
 
-#backup $var_dir
-#echo $var_dir
-#fi
 var="cron.log"
 var_dir="$back_dir/$var""_backup"
-backup $var_dir
+backup 
+clean_log
 #
 var="kern.log"
 var_dir="$back_dir/$var""_backup"
-backup $var_dir
+backup 
+clean_log
+
 #
 var="daemon.log"
 var_dir="$back_dir/$var""_backup"
-backup $var_dir
+backup 
+clean_log
+
 #
 var="user.log"
 var_dir="$back_dir/$var""_backup"
-backup $var_dir
+backup 
+clean_log
+
 #
 var="sys.log"
 var_dir="$back_dir/$var""_backup"
-backup $var_dir
+backup 
+clean_log
 
 
