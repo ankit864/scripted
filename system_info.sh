@@ -46,10 +46,21 @@ disk_info ()
 	df -Th
 }
 
+#memory information /proc/meminfo
+memory_info ()
+{
+	echo "======================Memory info========================"
+	grep -i "memtotal:" /proc/meminfo | awk '{print $1 $2/1048576 " Gb"}' 
+	grep -i "memfree:" /proc/meminfo | awk '{print $1 $2/1048576 " Gb"}' 
+	grep -i "MemAvailable:" /proc/meminfo | awk '{print $1 $2/1048576 " Gb"}'        
+	grep -i "swaptotal:" /proc/meminfo | awk '{print $1 $2/1048576 " Gb"}'     
+	grep -i "swapfree:" /proc/meminfo | awk '{print $1 $2/1048576 " Gb"}'     
+}
 #function calling
  
 cpu_info
 cpu_load_info   
+memory_info
 disk_info
 network_info
 
