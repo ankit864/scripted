@@ -1,7 +1,7 @@
 #!/bin/bash
 
 bing="www.bing.com"
-pic_url_extract_page="http://www.bing.com/HPImageArchive.aspx?format=xml&idx=0&n=1&mkt=en-US"
+pic_url_extract_page="http://www.bing.com/HPImageArchive.aspx?format=xml&idx=1&n=1&mkt=en-US"
 wallpaper_dir="/home/$USER/wallpaper"
 mkdir -p $wallpaper_dir
 pic_resolution="_1366x768"
